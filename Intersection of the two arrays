@@ -1,0 +1,63 @@
+#include <stdio.h>
+
+
+void findIntersection(int arr1[], int arr2[], int size1, int size2) {
+    int result[size1 + size2]; 
+    int *ptr = result; 
+    int *end = result + size1 + size2; 
+
+    
+    for (int i = 0; i < size1; i++) {
+        for (int j = i + 1; j < size1; j++) {
+            if (arr1[i] > arr1[j]) {
+                int temp = arr1[i];
+                arr1[i] = arr1[j];
+                arr1[j] = temp;
+            }
+        }
+    }
+
+    for (int i = 0; i < size2; i++) {
+        for (int j = i + 1; j < size2; j++) {
+            if (arr2[i] > arr2[j]) {
+                int temp = arr2[i];
+                arr2[i] = arr2[j];
+                arr2[j] = temp;
+            }
+        }
+    }
+
+ 
+    int i = 0, j = 0;
+    while (i < size1 && j < size2) {
+        if (arr1[i] == arr2[j]) {
+          
+            *ptr = arr1[i];
+            ptr++;
+            i++;
+            j++;
+        } else if (arr1[i] < arr2[j]) {
+            i++;
+        } else {
+            j++;
+        }
+    }
+
+
+    printf("Intersection of the two arrays: ");
+    for (int *p = result; p < ptr; p++) {
+        printf("%d ", *p);
+    }
+    printf("\n");
+}
+
+int main() {
+    int arr1[] = {1, 2, 4, 5, 6};
+    int arr2[] = {2, 3, 5, 7};
+    int size1 = sizeof(arr1) / sizeof(arr1[0]);
+    int size2 = sizeof(arr2) / sizeof(arr2[0]);
+
+    findIntersection(arr1, arr2, size1, size2);
+
+    return 0;
+}

@@ -1,0 +1,21 @@
+#include<stdio.h>
+#include<conio.h>
+#define N 10
+int main() {
+
+    char  a[N]; 
+    char *p;
+    int count=0;
+
+    printf("Enter any string: ");
+    scanf("%s",a);
+    printf("%s",a);
+    p = a;
+    while ( *p != '\0') 
+    {
+        count++;
+        p++;
+    }
+ printf("The length of the string is %d", count);
+ return 0;
+}
